@@ -1,0 +1,25 @@
+public class Atendimento {
+
+    public int fila;
+    public int coluna;
+
+    public  void escolherLugar(char[][] lugar, int fila, int coluna) {
+        this.fila = fila;
+        this.coluna = coluna;
+
+         lugar[this.fila][this.coluna] = 'x';
+    }
+
+    public void mostrarLugares(char[][] cinema){
+        System.out.println("    0. 1. 2. 3. 4. 5. 6. 7. 8. 9.");
+        for (this.fila = 0; this.fila < 10; this.fila++) {
+            System.out.print(this.fila + " -");
+            for (this.coluna = 0; this.coluna < 10; this.coluna++) {
+                System.out.print(" " + cinema[this.fila][this.coluna] + " ");
+            }
+            System.out.println("");
+        }
+        System.out.println("    ----------TELA--------------");
+        System.out.println("======================================");
+    }
+}
