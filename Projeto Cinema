@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class Cinema {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+        System.out.println("*");
+
+        Atendimento objatendimento = new Atendimento();
+
+        char[][] cinema = new char[10][10];
+        int fila = 0, coluna = 0, opcao = 0; char mais = 0;
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                cinema[i][j] = '0';
+            }
+        }
+
+        do {
+            System.out.println("1 - Reservar");
+            System.out.println("2 - mostrar o layout do cinema");
+            System.out.println("3 - Sair");
+            System.out.print("Digite o número da opção que deseja: ");
+            opcao = leitor.nextInt();
+            System.out.println("======================================");
+
+            switch (opcao) {
+
+                case 1 -> {
+                    System.out.println("FILA: de 0 a 9 | POLTRONA: de 0 a 9");
+                    do {
+                        System.out.print("Digite o número da fila: ");
+                        fila = leitor.nextInt();
+                        System.out.print("Digite o número da coluna: ");
+                        coluna = leitor.nextInt();
+
+                        if (cinema[(fila)][(coluna)] == '0') {
+                            objatendimento.escolherLugar(cinema, fila, coluna);
+                        } else {
+                            System.out.println(". . . . . . . . . . . .");
+                            System.out.println("-- Poltrona Ocupada --");
+
+                            System.out.print("Escreva o número da fila: ");
+                            fila = leitor.nextInt();
+                            System.out.print("Escreva o número da poltrona: ");
+                            coluna = leitor.nextInt();
+
+                            objatendimento.escolherLugar(cinema, fila, coluna);
+                        }
+                        System.out.println("------------------------------");
+                        System.out.print("Quer selecionar mais lugares s-(sim) ou n-(não): ");
+                        mais = leitor.next().charAt(0);
+
+                    } while (mais == 's');
+                    System.out.println("====================================================");
+                    break;
+                }
+                case 2 -> {
+                    objatendimento.mostrarLugares(cinema);
+                    break;
+                }
+            }
+        }while (opcao != 3);
+
+        leitor.close();
+        }
+    }
